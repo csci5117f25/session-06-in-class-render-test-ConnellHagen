@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,16 +9,26 @@
 
     <title>Hi!</title>
 </head>
-<body>
-    
-<h1>Hello from Render</h1>
-{% if name %}
-<h2>and hello to {{name}}</h2>
-{% endif %}
 
-<form action="/submitForm" method="post">
-    <input type="text" name="thebox" id="thebox">
-    <button type="submit">Submit</button>
-</form>
+<body>
+
+    <h1>Hello from Render</h1>
+    {% if name %}
+    <h2>and hello to {{name}}</h2>
+    {% endif %}
+
+    <h3>Add your name to the guest list:</h3>
+    <form method="POST" action="/submitForm">
+        <label for="guest">Name:</label>
+        <input type="text" name="guest" id="guest-name">
+        <button type="submit">Submit</button>
+    </form>
+
+    <h1>Guest List:</h1>
+    {% for guest in guests %}
+    <p>{{guest}}</p>
+    {% endfor %}
+
 </body>
+
 </html>

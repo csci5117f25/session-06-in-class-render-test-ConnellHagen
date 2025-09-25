@@ -1,14 +1,16 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request
+from database import *
 
 app = Flask(__name__)
 
 @app.route('/')
 @app.route('/<name>')
 def hello(name=None):
-    return render_template('hello.html', name=name)
+    guests = get_guests()
+    return render_template('hello.html', name=name, guests=guests)
 
 @app.post('/submitForm')
 def submit():
-    text = request.args.get('thebox')
-    print(request.args)
-    return render_template('hello.html')
+    text = request.form.get('guest')
+    save_guest(text)
+    return redirect('/')
